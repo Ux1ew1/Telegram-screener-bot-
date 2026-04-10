@@ -118,6 +118,7 @@ class TradingBotApp:
     def _settings_dump(self) -> str:
         data = asdict(self.settings)
         lines = ["Текущие настройки бота:"]
+        lines.append(f"Активный пресет: {self.settings.trading_preset} (TRADING_PRESET)")
         for key in sorted(NUMERIC_FIELDS.keys()):
             label = SETTING_LABELS.get(key, "Параметр")
             lines.append(f"{label}: {data[key.lower()]} ({key})")

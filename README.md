@@ -27,6 +27,7 @@ Telegram-бот для отбора монет Bybit USDT Perpetual (MVP):
 3. Установите зависимости:
    - `pip install -r requirements.txt`
 4. Скопируйте `.env.example` в `.env` и заполните ключи.
+   - Для интрадей-режима установите `TRADING_PRESET=intraday`.
 5. Запуск:
    - `python -m src.trading_bot.main`
 
@@ -66,6 +67,7 @@ Telegram-бот для отбора монет Bybit USDT Perpetual (MVP):
 - `SIGNAL_EVAL_WINDOW_MIN`
 
 Расшифровка ключей:
+- `TRADING_PRESET` — базовый пресет настроек. Доступно: `mvp` (по умолчанию), `intraday`.
 - `SCAN_INTERVAL_MIN` — интервал автоскана в минутах.
 - `MIN_24H_QUOTE_VOLUME` — минимальный объем торгов за 24ч для монеты (в USDT).
 - `MAX_SYMBOLS_TO_ANALYZE` — сколько самых ликвидных монет анализировать за цикл.
@@ -82,6 +84,23 @@ Telegram-бот для отбора монет Bybit USDT Perpetual (MVP):
 - `MIN_REGIME_STRENGTH_4H` — минимальная сила тренда (0-100), ниже которой сигнал отбрасывается как флэт.
 - `CONFIRMATION_LOOKBACK_15M` — сколько свечей `15m` брать для подтверждения пробоя.
 - `SIGNAL_EVAL_WINDOW_MIN` — через сколько минут закрывать сигнал в статистике и считать результат.
+
+Параметры пресета `intraday` (если соответствующий ключ не задан вручную в `.env`):
+- `SCAN_INTERVAL_MIN=5`
+- `MIN_24H_QUOTE_VOLUME=80000000`
+- `MAX_SYMBOLS_TO_ANALYZE=120`
+- `MIN_SCORE=50`
+- `TOP_N=12`
+- `SL_ATR_MULT=1.1`
+- `RR_RATIO=1.8`
+- `MIN_ABS_TREND_PCT_4H=0.35`
+- `CORRELATION_LOOKBACK=36`
+- `CORRELATION_PENALTY_THRESHOLD=0.85`
+- `DEDUPE_WINDOW_MIN=90`
+- `REGIME_LOOKBACK_4H=10`
+- `MIN_REGIME_STRENGTH_4H=30`
+- `CONFIRMATION_LOOKBACK_15M=16`
+- `SIGNAL_EVAL_WINDOW_MIN=180`
 
 ## ❗ Важно
 Сигналы являются аналитическими и не являются финансовой рекомендацией.

@@ -5,6 +5,7 @@ from src.trading_bot.config import Settings
 
 def make_settings() -> Settings:
     return Settings(
+        trading_preset="mvp",
         telegram_bot_token="x",
         bybit_api_key="",
         bybit_api_secret="",
